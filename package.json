@@ -1,0 +1,33 @@
+{
+  "name": "x-store",
+  "version": "1.0.0",
+  "description": "x_store sample project in node and mysql",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bluebird": "^3.7.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.5.0",
+    "http": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.1",
+    "moment": "^2.27.0",
+    "morgan": "^1.10.0",
+    "mssql": "^6.2.0",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.4.10",
+    "uuid": "^8.1.0",
+    "uuidv4": "^6.1.1",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "jan audrick lazaro",
+  "license": "ISC"
+}

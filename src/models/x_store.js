@@ -34,12 +34,12 @@ module.exports.postUser = (data) => {
   });
 };
 
-module.exports.getUserHashPassword = (email) => {
-  const ACTION = '[getUserHashPassword]';
+module.exports.getUserDetails = (email) => {
+  const ACTION = '[getUserDetails]';
   logger.log('info', `${TAG}${ACTION}`);
 
   return new Promise((resolve, reject) => {
-    db.select('password').from('x_user')
+    db.select('*').from('x_user')
     .where('email', email)
     .then(res => {
       resolve(res);

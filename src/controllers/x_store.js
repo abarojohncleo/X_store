@@ -16,7 +16,7 @@ router.post('/post_user', XStoreValidation.userValidation, validate, async (req,
   }
 });
 
-router.post('/login', async(req, res) =>{
+router.post('/login', XStoreValidation.logInValidation, validate, async(req, res) =>{
   let data = req.body;
   let result = await XStoreServices.userLogIn(data);
   if(result){

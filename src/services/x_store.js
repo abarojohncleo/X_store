@@ -4,6 +4,8 @@ const moment = require('moment');
 const XStoreModel = require('../models/x_store');
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
+const Token = require('../core/helpers/jwt')
+
  
 module.exports = {
   postUser: async (data) => {
@@ -24,16 +26,20 @@ module.exports = {
     logger.log('info', `${TAG}${ACTION}`);
     try {
       let ObjArr = []
-      console.log(data)
-      let get_hash_password = await XStoreModel.getUserHashPassword(data.email);
-      let hash_password = get_hash_password[0].password
+      
+      let getUserDetails = await XStoreModel.getUserDetails(data.email);
+      let hash_password = getUserDetails[0].password
 
       let match = await bcrypt.compare(data.password, hash_password)
       if(match){
-        let message = 'password match';
-        ObjArr.push(message)
+        let data = {
+          email:getUserDetails[0].email,
+          user_id:getUserDetails[0].sys_id
+        }
+        let token = Token.getToken(data)
+        ObjArr.push(token);
       }else{
-        let message = 'password mismatch';
+        let message = 'Auth failed';
         ObjArr.push(message)
       }
       return ObjArr;

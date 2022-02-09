@@ -48,3 +48,17 @@ module.exports.getUserDetails = (email) => {
     });
   });
 };
+
+module.exports.getUsers = () => {
+  const ACTION = '[getUsers]';
+  logger.log('info', `${TAG}${ACTION}`);
+
+  return new Promise((resolve, reject) => {
+    db.select('*').from('x_user')
+    .then(res => {
+      resolve(res);
+    }).catch(e => {
+      reject(e);
+    });
+  });
+};

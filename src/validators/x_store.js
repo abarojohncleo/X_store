@@ -38,11 +38,11 @@ module.exports = {
       try {
         let email_exists = await XStoreModel.checkEmailExists(email);
         if(email_exists.length === 0){
-          return Promise.reject('Email is already in use');
+          return Promise.reject('Auth failed');
         }
       } catch (error) {
         apiLogger.addErrorLog(error, `${TAG}${ACTION}`);
-        return Promise.reject('Unable to validate Rpaf ID');
+        return Promise.reject('Unable to validate Email ID');
       }
     }),
     body('password')

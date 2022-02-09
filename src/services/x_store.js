@@ -4,7 +4,7 @@ const moment = require('moment');
 const XStoreModel = require('../models/x_store');
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
-const Token = require('../core/helpers/jwt')
+const Token = require('../core/helpers/jwt');
 
  
 module.exports = {
@@ -34,8 +34,10 @@ module.exports = {
       if(match){
         let data = {
           email:getUserDetails[0].email,
-          user_id:getUserDetails[0].sys_id
+          user_id:getUserDetails[0].sys_id,
+          user_role: getUserDetails[0].role
         }
+        console.log(data)
         let token = Token.getToken(data)
         ObjArr.push(token);
       }else{
@@ -43,6 +45,18 @@ module.exports = {
         ObjArr.push(message)
       }
       return ObjArr;
+    } catch (error) {
+      console.log(error)
+      return null;
+    }
+  },
+  getUsers: async() => {
+    const ACTION = '[getUsers]';
+    logger.log('info', `${TAG}${ACTION}`);
+
+    try {
+      let result = await XStoreModel.getUsers();
+      return result;
     } catch (error) {
       console.log(error)
       return null;

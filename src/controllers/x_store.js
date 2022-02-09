@@ -24,7 +24,8 @@ router.post('/login', XStoreValidation.logInValidation, validate, async(req, res
   } else {
     res.error(response(INTERNAL_SERVER_ERROR));
   }
-})
+});
+
 
 module.exports = router;
 

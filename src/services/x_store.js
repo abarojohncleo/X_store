@@ -6,7 +6,6 @@ const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
 const Token = require('../core/helpers/jwt');
 
- 
 module.exports = {
   postUser: async (data) => {
     const ACTION = '[postUser]';
@@ -45,18 +44,6 @@ module.exports = {
         ObjArr.push(message)
       }
       return ObjArr;
-    } catch (error) {
-      console.log(error)
-      return null;
-    }
-  },
-  getUsers: async() => {
-    const ACTION = '[getUsers]';
-    logger.log('info', `${TAG}${ACTION}`);
-
-    try {
-      let result = await XStoreModel.getUsers();
-      return result;
     } catch (error) {
       console.log(error)
       return null;

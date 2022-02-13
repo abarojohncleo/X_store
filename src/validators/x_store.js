@@ -26,8 +26,10 @@ module.exports = {
       } catch (error) {
         return null;
       }
-    })
-
+    }),
+    body('password')
+    .isString()
+    .notEmpty().withMessage('Password name must not be empty')
   ],
   logInValidation: [
     body('email')
